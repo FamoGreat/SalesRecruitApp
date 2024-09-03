@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Testimonial>
+
+@{
+    ViewData["Title"] = "Testimonials";
+    int count = 1;
+}
+<partial name="_Notification" />
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between mb-3 flex-wrap">
+        <h2 class="mb-3">Testimonials</h2>
+        <a asp-action="Create" class="btn btn-primary mb-3">Create New Testimonial</a>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Testimonial List
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Comment</th>
+                            <th scope="col">Product Bundle</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var testimonial in Model)
+                        {
+                            <tr class="align-middle">
+                                <th scope="row">@(count++)</th>
+                                <td>@testimonial.CustomerName</td>
+                                <td>@Html.Raw(testimonial.Comment.Length > 50 ? testimonial.Comment.Substring(0, 50) + "..." : testimonial.Comment)</td>
+                                <td>@testimonial.ProductBuddle.Name</td>
+                                <!-- Image Column -->
+                                <td>
+                                    @if (!string.IsNullOrEmpty(testimonial.ImageUrl))
+                                    {
+                                        <img src="@testimonial.ImageUrl" alt="Customer Image" class="img-thumbnail" style="max-width: 100px; max-height: 100px;" />
+                                    }
+                                    else
+                                    {
+                                        <span>No image</span>
+                                    }
+                                </td>
+
+                                <!-- Actions -->
+                                <td>
+                                    <div class="d-flex justify-content-center flex-wrap">
+                                        <a asp-action="Edit" asp-route-id="@testimonial.Id" class="btn btn-success btn-sm mx-1 mb-1">Edit</a>
+                                        <a asp-action="Delete" asp-route-id="@testimonial.Id" class="btn btn-danger btn-sm mx-1 mb-1">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

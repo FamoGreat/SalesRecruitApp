@@ -1,0 +1,33 @@
+﻿@model FAQ
+
+<partial name="_Notification" />
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card bg-light mb-3" style="width: 60rem;">
+        <div class="card-header text-danger">Delete FAQ</div>
+        <div class="card-body">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Warning!</strong> You are about to delete this FAQ. This action cannot be undone.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <form asp-action="Delete" method="post">
+                <input asp-for="Id" type="hidden" />
+
+                <fieldset>
+                    <div class="form-group mb-3">
+                        <label>Question</label>
+                        <p class="form-control-plaintext">@Model.Question</p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>Answer</label>
+                        <p class="form-control-plaintext">@Model.Answer</p>
+                    </div>
+
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

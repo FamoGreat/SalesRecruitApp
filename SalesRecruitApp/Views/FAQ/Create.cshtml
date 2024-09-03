@@ -1,0 +1,33 @@
+﻿@model FAQViewModel
+
+<partial name="_Notification" />
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card bg-light mb-3" style="width: 60rem;">
+        <div class="card-header">Add New FAQ</div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <fieldset>
+                    <div class="form-group mb-3">
+                        <label asp-for="FAQ.ProductBuddleId" class="form-label"></label>
+                        <select asp-for="FAQ.ProductBuddleId" asp-items="@Model.ProductBundleList" class="form-select">
+                            <option disabled selected>--Select Product Bundle--</option>
+                        </select>
+                        <span asp-validation-for="FAQ.ProductBuddleId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="FAQ.Question"></label>
+                        <input asp-for="FAQ.Question" class="form-control" />
+                        <span asp-validation-for="FAQ.Question" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="FAQ.Answer"></label>
+                        <textarea asp-for="FAQ.Answer" class="form-control"></textarea>
+                        <span asp-validation-for="FAQ.Answer" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-4">Create</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

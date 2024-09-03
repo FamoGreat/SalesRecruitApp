@@ -1,0 +1,52 @@
+﻿@model IEnumerable<FAQ>
+
+@{
+    ViewData["Title"] = "FAQs";
+    int count = 1;
+}
+
+<partial name="_Notification" />
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between mb-3 flex-wrap">
+        <h2 class="mb-3">FAQs</h2>
+        <a asp-action="Create" class="btn btn-primary mb-3">Create New FAQ</a>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            FAQ List
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Product Bundle</th>
+                            <th scope="col">Answer</th>
+                            <th scope="col" class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var faq in Model)
+                        {
+                            <tr>
+                                <th scope="row">@(count++)</th>
+                                <th>@faq.ProductBuddle.Name</th>
+                                <td>@faq.Question</td>
+                                <td>@faq.Answer</td>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center flex-wrap">
+                                        <a asp-action="Edit" asp-route-id="@faq.Id" class="btn btn-success btn-sm mx-1 mb-1">Edit</a>
+                                        <a asp-action="Delete" asp-route-id="@faq.Id" class="btn btn-danger btn-sm mx-1 mb-1">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+﻿@model ProductViewModel
+
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<partial name="_Notification" />
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card bg-light mb-3" style="width: 60rem;">
+        <div class="card-header">Create Product</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <form asp-action="Create" enctype="multipart/form-data" method="post">
+                        <fieldset>
+                            <div class="mb-3">
+                                <label asp-for="Product.Name" class="form-label"></label>
+                                <input asp-for="Product.Name" class="form-control" placeholder="Enter product name">
+                                <span asp-validation-for="Product.Name" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label asp-for="Product.Description" class="form-label"></label>
+                                <div id="editor-container" style="height: 200px;">
+                                    <textarea asp-for="Product.Description" class="form-control" placeholder="Enter Product description"></textarea>
+                                </div>
+                                <input type="hidden" asp-for="Product.Description" id="Description">
+                                <span asp-validation-for="Product.Description" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Product.ProductBuddleId" class="form-label"></label>
+                                <select asp-for="Product.ProductBuddleId" asp-items="@Model.ProductBundleList" class="form-select">
+                                    <option value="" disabled selected>--Select Category--</option>
+                                </select>
+                                <span asp-validation-for="Product.ProductBuddleId" class="text-danger"></span>
+                            </div>
+                
+                            <div class="mb-3">
+                                <label asp-for="Product.ShortDescription" class="form-label"></label>
+                                <textarea asp-for="Product.ShortDescription" class="form-control" placeholder="Enter usage instructions here..." rows="4"></textarea>
+                                <span asp-validation-for="Product.ShortDescription" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="imageFile" class="form-label mt-4">Upload Image</label>
+                                <input class="form-control" type="file" id="imageFile" name="imageFile" onchange="previewImage(event)">
+                                <span asp-validation-for="Product.ImageUrl" class="text-danger"></span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="card-title">Preview</h5>
+                    <img id="imagePreview" src="@Model?.Product?.ImageUrl" class="img-fluid" alt="Product Image Preview" style="max-width: 100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Initialize Quill editor
+        var quill = new Quill('#editor-container', {
+            theme: 'snow'
+        });
+        // When the form is submitted, copy the plain text from Quill to the hidden textarea
+        document.querySelector('form').addEventListener('submit', function () {
+            var commentInput = document.getElementById('Description');
+            commentInput.value = quill.getText();
+        });
+
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('imagePreview');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

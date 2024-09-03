@@ -1,0 +1,94 @@
+.hero-bg {
+    background-image: url('images/Here.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.section-bg {
+    background-color: #f8f9fa;
+}
+
+.btn-primary {
+    background-color: #2c8d60;
+    border-color: #2c8d60;
+}
+
+    .btn-primary:hover {
+        background-color: #247a4b;
+        border-color: #247a4b;
+    }
+
+.footer {
+    background-color: #2c8d60;
+    color: white;
+}
+
+.testimonial-carousel img {
+    border-radius: 50%;
+}
+
+.sticky-add-to-cart {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 15px;
+    z-index: 1000; 
+}
+
+.sticky-add-to-cart {
+    position: fixed;
+    bottom: 20px; 
+    right: 20px; 
+    z-index: 1000; 
+}
+
+    .sticky-add-to-cart .btn {
+        background-color: #f8f9fa;
+        color: #000;
+        border: 1px solid #dee2e6;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-align: center;
+        font-weight: bold;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .sticky-add-to-cart .btn:hover {
+            background-color: #e2e6ea;
+            color: #000;
+        }
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 30px; 
+    font-size: 18px; 
+    font-weight: bold;
+    color: #fff; 
+    background-color: #007bff; 
+    border: none;
+    border-radius: 50px; 
+    text-align: center;
+    text-decoration: none; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: all 0.3s ease;
+    cursor: pointer; 
+}
+
+    .cta-button:hover {
+        background-color: #0056b3; 
+        transform: scale(1.05); 
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+    }
+
+    .cta-button:focus {
+        outline: none; 
+        box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.5);
+    }
+
+    .cta-button:active {
+        background-color: #004085; 
+        transform: scale(0.98); 
+    }

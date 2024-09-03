@@ -1,0 +1,32 @@
+﻿.hero-bg {
+    background-image: url('https://via.placeholder.com/1500x500');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.section-bg {
+    background-color: #f8f9fa;
+}
+
+.btn-primary {
+    background-color: #2c8d60;
+    border-color: #2c8d60;
+}
+
+    .btn-primary:hover {
+        background-color: #247a4b;
+        border-color: #247a4b;
+    }
+
+.footer {
+    background-color: #2c8d60;
+    color: white;
+}
+
+.testimonial-carousel img {
+    border-radius: 50%;
+}
+

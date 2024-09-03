@@ -1,0 +1,51 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Delete Product";
+}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card bg-light mb-3" style="width: 60rem;">
+        <div class="card-header text-danger">Delete Product</div>
+        <div class="card-body">
+
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Warning!</strong> You are about to delete this product. This action cannot be undone.
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <dl class="row">
+                        <dt class="col-sm-4">Product Name</dt>
+                        <dd class="col-sm-8">@Model.Name</dd>
+
+                        <dt class="col-sm-4">Short Description</dt>
+                        <dd class="col-sm-8">@Html.Raw(Model.ShortDescription)</dd>
+
+                        <dt class="col-sm-4">Long Description</dt>
+                        <dd class="col-sm-8">@Html.Raw(Model.Description)</dd>
+
+
+                        <dt class="col-sm-4">Product Buddle</dt>
+                        <dd class="col-sm-8">@Model.ProductBuddle?.Name</dd>
+
+                    </dl>
+
+                    <form asp-action="Delete" asp-controller="Product" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="card-title">Preview</h5>
+                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                        <img id="imagePreview" src="@Model.ImageUrl" class="img-fluid" alt="Product Image Preview" style="max-width: 100%;">
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,127 @@
+﻿@model HomeViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Hero Section -->
+<header class="hero-bg">
+    <div class="container">
+        <h1>Badilisha Afya Yako kwa Vifurushi Yetu Maalum na Bora Zaidi</h1>
+        <p class="lead">Pata Suluhisho Bora kwa Kupunguza Uzito, Kupunguza Maumivu ya Viungo, na Kusafisha Mwili Wako kwa Ufanisi.</p>
+        <a href="bundles.html" class="btn btn-primary">Anza Safari Yako Leo</a>
+        <a href="learn-more.html" class="btn btn-light">Jifunze Zaidi</a>
+    </div>
+</header>
+
+<!-- About Us Section -->
+<section class="about-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="~/images/AboutUs.png" alt="About Us">
+            </div>
+            <div class="col-md-6">
+                <h2>Kuhusu Sisi</h2>
+                <p>Karibu kwenye Wellness Supplements, mahali bora kwako kupata suluhisho za afya za hali ya juu. Malengo yetu ni kutoa bidhaa za asili na bora zilizoundwa kukusaidia kufikia malengo yako ya afya. Ikiwa unatafuta usimamizi wa uzito, kupunguza maumivu ya viungo, au suluhisho za kusafisha mwili, tunayo mipango iliyokusudiwa kwa mahitaji yako.</p>
+                <p>Tukiwa na dhamira ya kutoa ubora na kuridhika kwa wateja, tunajitahidi kutoa bidhaa zinazofanya tofauti halisi maishani mwako. Timu yetu inayojitolea ipo hapa kukusaidia kwenye safari yako ya afya kwa mapendekezo ya kibinafsi na huduma bora.</p>
+                <a href="about.html" class="btn btn-primary">Jifunze Zaidi Kuhusu Sisi</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Product Highlights Section -->
+<section class="section-bg py-5">
+    <div class="container">
+        <div class="row">
+            @foreach (var bundle in Model.ProductBuddles)
+            {
+                <div class="col-md-4">
+                    <img src="@bundle.ImageUrl" class="img-fluid" alt="@bundle.Name">
+                    <h3>@bundle.Name</h3>
+                    <p style="white-space: pre-wrap;">@bundle.Highlights</p>
+                    <a href="@Url.Action("Details", "Home", new { id = bundle.Id })" class="btn btn-primary">Nunua Sasa</a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+<!-- Testimonials Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Maoni na shuhuda za Wateja Wetu</h2>
+        <div id="testimonialCarousel" class="carousel slide testimonial-carousel" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @for (var i = 0; i < Model.Testimonials.Count(); i += 3)
+                {
+                    var isActive = i == 0 ? "active" : "";
+                    <div class="carousel-item @isActive">
+                        <div class="row d-flex align-items-center justify-content-center">
+                            @for (var j = i; j < i + 3 && j < Model.Testimonials.Count(); j++)
+                            {
+                                var testimonial = Model.Testimonials.ElementAt(j);
+                                <div class="col-md-4">
+                                    <div class="card mb-3">
+                                        <img src="@testimonial.ImageUrl" class="card-img-top rounded-circle" alt="Customer Image" style="width: 100px; height: 100px; object-fit: cover; margin: auto; display: block;">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">@testimonial.CustomerName</h5>
+                                            <p class="card-text">"@testimonial.Comment"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <a href="testimonials.html" class="btn btn-light mt-4">Tazama Hadithi Za Mafanikio Zaidi</a>
+    </div>
+</section>
+
+
+<!-- Special Offers Section -->
+<section class="section-bg py-5">
+    <div class="container text-center">
+        <div class="bg-light py-3 px-4">
+            <h2>Ofa Maalum</h2>
+            <p>Nunua Mifuko 2, Pata Usafirishaji Bila Malipo!</p>
+            <a href="offers.html" class="btn btn-primary">Nunua Ofa</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- Health Tips & Advice Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Vidokezo na Ushauri wa Afya</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Vidokezo vya Afya">
+                    <div class="card-body">
+                        <h5 class="card-title">Kichwa cha Vidokezo</h5>
+                        <p class="card-text">Maelezo mafupi kuhusu vidokezo vya afya.</p>
+                        <a href="health-tips.html" class="btn btn-primary">Soma Zaidi</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Kadi za ziada zinaweza kuongezwa hapa -->
+        </div>
+        <a href="health-tips.html" class="btn btn-light">Chunguza Vidokezo vya Afya</a>
+    </div>
+</section>
+

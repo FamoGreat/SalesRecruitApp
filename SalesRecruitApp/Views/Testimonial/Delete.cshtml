@@ -1,0 +1,41 @@
+﻿@model Testimonial
+
+@{
+    ViewData["Title"] = "Delete Testimonial";
+}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card bg-light mb-3" style="width: 60rem;">
+        <div class="card-header text-danger">Delete Testimonial</div>
+        <div class="card-body">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Warning!</strong> You are about to delete this testimonial. This action cannot be undone.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <dl class="row">
+                        <dt class="col-sm-4">Customer Name</dt>
+                        <dd class="col-sm-8">@Model.CustomerName</dd>
+
+                        <dt class="col-sm-4">Comment</dt>
+                        <dd class="col-sm-8">@Html.Raw(Model.Comment)</dd>
+                    </dl>
+
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="card-title">Preview</h5>
+                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                        <img id="imagePreview" src="@Model.ImageUrl" class="img-fluid" alt="Testimonial Image Preview" style="max-width: 100%;">
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

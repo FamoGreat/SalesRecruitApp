@@ -1,0 +1,86 @@
+﻿@model IEnumerable<ProductBuddle>
+
+@{
+    ViewData["Title"] = "Product Bundles";
+    int count = 1;
+}
+<partial name="_Notification" />
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between mb-3 flex-wrap">
+        <h2 class="mb-3">Product Bundles</h2>
+        <a asp-action="Create" asp-controller="ProductBuddle" class="btn btn-primary mb-3">Create New Bundle</a>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Product Bundle List
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Stock Quantity</th>
+                            <th scope="col">Date Added</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Video</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var bundle in Model)
+                        {
+                            <tr class="align-middle">
+                                <th scope="row">@(count++)</th>
+                                <td>@bundle.Name</td>
+                                <td>@Html.Raw(bundle.Description.Length > 50 ? bundle.Description.Substring(0, 50) + "..." : bundle.Description)</td>
+                                <td>@bundle.Price.ToString("C")</td>
+                                <td>@(bundle.StockQuantity.HasValue ? bundle.StockQuantity.ToString() : "Out of Stock")</td>
+                                <td>@bundle.DateAdded.ToString("yyyy-MM-dd")</td>
+
+                                <!-- Image Column -->
+                                <td>
+                                    @if (!string.IsNullOrEmpty(bundle.ImageUrl))
+                                    {
+                                        <img src="@bundle.ImageUrl" alt="Product Image" class="img-thumbnail" style="max-width: 100px; max-height: 100px;" />
+                                    }
+                                    else
+                                    {
+                                        <span>No image</span>
+                                    }
+                                </td>
+
+                                <!-- Video Column -->
+                                <td>
+                                    @if (!string.IsNullOrEmpty(bundle.VideoUrl))
+                                    {
+                                        <video autoplay muted loop style="max-width: 150px; max-height: 100px;">
+                                            <source src="@bundle.VideoUrl" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    }
+                                    else
+                                    {
+                                        <span>No video</span>
+                                    }
+                                </td>
+
+                                <!-- Actions -->
+                                <td>
+                                    <div class="d-flex justify-content-center flex-wrap">
+                                        <a asp-action="Edit" asp-route-id="@bundle.Id" class="btn btn-success btn-sm mx-1 mb-1">Edit</a>
+                                        <a asp-action="Delete" asp-route-id="@bundle.Id" class="btn btn-danger btn-sm mx-1 mb-1">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

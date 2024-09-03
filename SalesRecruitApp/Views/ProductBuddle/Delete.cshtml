@@ -1,0 +1,66 @@
+﻿@model ProductBuddle
+
+@{
+    ViewData["Title"] = "Delete Product Bundle";
+}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card bg-light mb-3" style="width: 60rem;">
+        <div class="card-header">Delete Product Bundle</div>
+        <div class="card-body">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Warning!</strong> You are about to delete this product bundle. This action cannot be undone.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <dl class="row">
+                        <dt class="col-sm-4">Bundle Name</dt>
+                        <dd class="col-sm-8">@Model.Name</dd>
+
+                        <dt class="col-sm-4">Title</dt>
+                        <dd class="col-sm-8">@Model.Title</dd>
+
+                        <dt class="col-sm-4">SubTitle</dt>
+                        <dd class="col-sm-8">@Model.SubTitle</dd>
+
+                        <dt class="col-sm-4">Highlights</dt>
+                        <dd class="col-sm-8">@Model.Highlights</dd>
+
+                        <dt class="col-sm-4">Usage Instructions</dt>
+                        <dd class="col-sm-8">@Model.UsageInstructions</dd>
+
+                        <dt class="col-sm-4">Description</dt>
+                        <dd class="col-sm-8">@Html.Raw(Model.Description)</dd>
+
+                        <dt class="col-sm-4">Price (Tsh)</dt>
+                        <dd class="col-sm-8">@Model.Price</dd>
+
+                        <dt class="col-sm-4">Stock Quantity</dt>
+                        <dd class="col-sm-8">@Model.StockQuantity</dd>
+                    </dl>
+
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="card-title">Preview</h5>
+                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                        <img id="imagePreview" src="@Model.ImageUrl" class="img-fluid" alt="Product Bundle Image Preview" style="max-width: 100%;">
+                    }
+                    @if (!string.IsNullOrEmpty(Model.VideoUrl))
+                    {
+                        <video id="videoPreview" controls class="img-fluid" style="max-width: 100%;">
+                            <source src="@Model.VideoUrl" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
