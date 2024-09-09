@@ -20,15 +20,15 @@
                                 <span asp-validation-for="Product.Name" class="text-danger"></span>
                             </div>
 
-
                             <div class="mb-3">
-                                <label asp-for="Product.Description" class="form-label"></label>
+                                <label asp-for="Product.Description" class="form-label">Description</label>
                                 <div id="editor-container" style="height: 200px;">
-                                    <textarea asp-for="Product.Description" class="form-control" placeholder="Enter Product description"></textarea>
+                                    <!-- Quill editor will be loaded here -->
                                 </div>
-                                <input type="hidden" asp-for="Product.Description" id="Description">
+                                <input type="hidden" asp-for="Product.Description" id="Product_Description">  <!-- Hidden field to store HTML content -->
                                 <span asp-validation-for="Product.Description" class="text-danger"></span>
                             </div>
+
 
                             <div class="mb-3">
                                 <label asp-for="Product.ProductBuddleId" class="form-label"></label>
@@ -38,11 +38,6 @@
                                 <span asp-validation-for="Product.ProductBuddleId" class="text-danger"></span>
                             </div>
                 
-                            <div class="mb-3">
-                                <label asp-for="Product.ShortDescription" class="form-label"></label>
-                                <textarea asp-for="Product.ShortDescription" class="form-control" placeholder="Enter usage instructions here..." rows="4"></textarea>
-                                <span asp-validation-for="Product.ShortDescription" class="text-danger"></span>
-                            </div>
                             <div class="mb-3">
                                 <label for="imageFile" class="form-label mt-4">Upload Image</label>
                                 <input class="form-control" type="file" id="imageFile" name="imageFile" onchange="previewImage(event)">
@@ -64,15 +59,17 @@
 
 @section Scripts {
     <script>
-        // Initialize Quill editor
-        var quill = new Quill('#editor-container', {
+
+        var descriptionEditor = new Quill('#editor-container', {
             theme: 'snow'
         });
-        // When the form is submitted, copy the plain text from Quill to the hidden textarea
+
+        // When the form is submitted, copy the HTML content from Quill to the hidden textarea for Description
         document.querySelector('form').addEventListener('submit', function () {
-            var commentInput = document.getElementById('Description');
-            commentInput.value = quill.getText();
+            var descriptionInput = document.getElementById('Product_Description'); // Ensure this ID matches the hidden input ID
+            descriptionInput.value = descriptionEditor.root.innerHTML; // Save the HTML content
         });
+
 
         function previewImage(event) {
             var reader = new FileReader();

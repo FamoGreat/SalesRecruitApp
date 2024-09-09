@@ -32,9 +32,7 @@
                         
                             <div class="mb-3">
                                 <label asp-for="Highlights" class="form-label">Highlights</label>
-                                <div id="editor-highlights" style="height: 200px;">
-                                    <textarea asp-for="Highlights" class="form-control" placeholder="Enter product bundle Highlights"></textarea>
-                                </div>
+                                <div id="editor-highlights" style="height: 200px;"></div>
                                 <input type="hidden" asp-for="Highlights" id="HighlightsInput">
                                 <span asp-validation-for="Highlights" class="text-danger"></span>
                             </div>
@@ -46,9 +44,7 @@
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Description" class="form-label">Description</label>
-                                <div id="editor-container" style="height: 200px;">
-                                    <textarea asp-for="Description" class="form-control" placeholder="Enter product bundle description"></textarea>
-                                </div>
+                                <div id="editor-container" style="height: 200px;"></div>
                                 <input type="hidden" asp-for="Description" id="DescriptionInput">
                                 <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
@@ -105,21 +101,20 @@
             theme: 'snow'
         });
 
-        // When the form is submitted, copy the plain text from Quill to the hidden textarea for Highlights
+        // When the form is submitted, copy the HTML content from Quill to the hidden textarea for Highlights
         document.querySelector('form').addEventListener('submit', function () {
             var highlightsInput = document.getElementById('HighlightsInput');
-            highlightsInput.value = highlightsEditor.getText();
+            highlightsInput.value = highlightsEditor.root.innerHTML; // Save the HTML content
         });
 
-        // Initialize Quill editor for Description
         var descriptionEditor = new Quill('#editor-container', {
             theme: 'snow'
         });
 
-        // When the form is submitted, copy the plain text from Quill to the hidden textarea for Description
+        // When the form is submitted, copy the HTML content from Quill to the hidden textarea for Description
         document.querySelector('form').addEventListener('submit', function () {
             var descriptionInput = document.getElementById('DescriptionInput');
-            descriptionInput.value = descriptionEditor.getText();
+            descriptionInput.value = descriptionEditor.root.innerHTML; // Save the HTML content
         });
 
         function previewImage(event) {

@@ -1,7 +1,6 @@
 ﻿@model SalesViewModel
 
-<!-- Hero Section -->
-<section class="text-center py-5 bg-light">
+<section class="video-section text-center py-5 bg-light">
     <div class="container">
         <h1 class="display-4">@Model.ProductBuddle.Title</h1>
         <p class="lead">@Model.ProductBuddle.SubTitle</p>
@@ -16,66 +15,61 @@
 </section>
 
 <!-- Product Details Section -->
-<section id="purchase" class="py-5">
+<section id="purchase" class="py-5 product-details-section">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <img src="@Model.ProductBuddle.ImageUrl" class="img-fluid" alt="@Model.ProductBuddle.Title">
+            <!-- Product Image -->
+            <div class="col-md-4 mb-4 mb-md-0">
+                <img src="@Model.ProductBuddle.ImageUrl" class="img-fluid rounded shadow-lg" alt="@Model.ProductBuddle.Title">
             </div>
-            <div class="col-md-6">
-                <div style="white-space: pre-wrap;">@Model.ProductBuddle.Description</div>
-                <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#usageInstructions" aria-expanded="false" aria-controls="usageInstructions">
-                    View Instructions
-                </button>
-                <div class="collapse" id="usageInstructions">
-                    <div class="card card-body">
-                        @Model.ProductBuddle.UsageInstructions
-                    </div>
+            <!-- Product Details -->
+            <div class="col-md-8">
+                <div class="product-description">
+                    @Html.Raw(Model.ProductBuddle.Description)
                 </div>
-
-                <a href="@Url.Action("AddToCart", "Cart", new { productId = Model.ProductBuddle.Id })" class="btn btn-primary mt-4">Add to Cart</a>
+                <a href="@Url.Action("AddToCart", "Cart", new { productId = Model.ProductBuddle.Id })" class="btn btn-primary product-add-to-cart-btn mt-4">Add to Cart</a>
             </div>
         </div>
     </div>
 </section>
 
+
 <!-- Product Bundle Details Section -->
-<section id="bundle-details" class="py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center mb-5">What's Inside the @Model.ProductBuddle.Title</h2>
+<section id="bundle-details" class="py-5 bg-light product-bundle-section">
+    <div class="container bg-white shadow rounded p-4">
+        <h2 class="text-center mb-5 font-weight-bold">What's Inside the @Model.ProductBuddle.Title</h2>
 
         @foreach (var product in Model.Products)
         {
-            <div class="row">
+            <div class="row mb-4 align-items-center">
                 <div class="col-md-4 @((Model.ProductBuddle.Products.IndexOf(product) % 2 == 0 ? "" : "order-md-2"))">
-                        <img src="@product.ImageUrl" class="img-fluid mb-3" style="width: 100px; height: 100px; display: block; margin: 0 auto;" alt="@product.Name">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <img src="@product.ImageUrl" class="img-fluid rounded shadow-lg" alt="@product.Name">
+                    </div>
                 </div>
                 <div class="col-md-8 @((Model.ProductBuddle.Products.IndexOf(product) % 2 == 0 ? "" : "order-md-1"))">
-                    <h4>@product.Name</h4>
-                    <p><strong>@product.ShortDescription</strong></p>
-                    <p>@product.Description</p>
+                    <h4 class="font-weight-bold text-dark">@product.Name</h4>
+                    <p class="text-muted">@Html.Raw(product.Description)</p>
                 </div>
             </div>
-            <hr>
+            <hr class="my-4">
         }
 
         <!-- Call to Action -->
-        <div class="text-center mt-5">
-            <h3>Transform Your Health Today!</h3>
-            <p>Don't wait another day to start feeling better. The @Model.ProductBuddle.Title is your key to revitalizing your body, improving your digestion, and boosting your overall wellness. Every product in this package is carefully selected to work together, ensuring you achieve the best results.</p>
-            <a href="@Url.Action("AddToCart", "Cart", new { productId = Model.ProductBuddle.Id })" class="btn btn-primary btn-lg">Add the @Model.ProductBuddle.Title to Your Cart Now</a>
+        <div class="text-center mt-5 bg-success text-white rounded p-4 product-bundle-cta">
+            <h3 class="font-weight-bold">Transform Your Health Today!</h3>
+            <p class="lead">Don’t wait another day to start feeling better. The @Model.ProductBuddle.Title is your key to revitalizing your body, improving your digestion, and boosting your overall wellness. Every product in this package is carefully selected to work together, ensuring you achieve the best results.</p>
+            <a href="@Url.Action("AddToCart", "Cart", new { productId = Model.ProductBuddle.Id })" class="btn btn-light btn-lg rounded-pill font-weight-bold custom-btn-hover">Add the @Model.ProductBuddle.Title to Your Cart Now</a>
             <p class="mt-3"><em>Experience the power of a healthier you with our expertly crafted products.</em></p>
         </div>
     </div>
 </section>
-
 <!-- Sticky Add to Cart -->
 <div class="sticky-add-to-cart">
     <a href="cart.html" class="btn btn-light">Add to Cart</a>
 </div>
-
 <!-- Testimonials Section -->
-<section class="py-5">
+<section class="py-5 section-bg">
     <div class="container">
         <h2 class="text-center mb-4">What Our Customers Are Saying</h2>
         <div id="testimonialCarousel" class="carousel slide testimonial-carousel" data-bs-ride="carousel">
@@ -83,10 +77,10 @@
                 @foreach (var testimonial in Model.Testimonials)
                 {
                     <div class="carousel-item @(Model.Testimonials.IndexOf(testimonial) == 0 ? "active" : "")">
-                        <div class="row d-flex align-items-center justify-content-center">
-                            <div class="col-md-4">
-                                <div class="card mb-3">
-                                    <img src="@testimonial.ImageUrl" class="card-img-top rounded-circle" alt="Customer Image" style="width: 100px; height: 100px; object-fit: cover; margin: auto; display: block;">
+                        <div class="d-flex justify-content-center">
+                            <div class="testimonial-item">
+                                <div class="card testimonial-card">
+                                    <img src="@testimonial.ImageUrl" class="card-img-top rounded-circle testimonial-img" alt="Customer Image">
                                     <div class="card-body text-center">
                                         <h5 class="card-title">@testimonial.CustomerName</h5>
                                         <p class="card-text">"@testimonial.Comment"</p>
@@ -97,34 +91,35 @@
                     </div>
                 }
             </div>
-            <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-bs-slide="next">
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
-            </a>
+            </button>
         </div>
+        <a href="testimonials.html" class="btn btn-primary mt-4">See More Success Stories</a>
     </div>
 </section>
 
 
 <!-- FAQ Section -->
-<section id="faq" class="py-5">
+<section id="faq" class="py-5 faq-section">
     <div class="container">
-        <h2 class="text-center mb-4">Frequently Asked Questions</h2>
-        <div class="accordion" id="faqAccordion">
+        <h2 class="text-center mb-4 faq-title">Frequently Asked Questions</h2>
+        <div id="faqAccordion" class="accordion faq-accordion">
             @foreach (var faq in Model.FAQs)
             {
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading-@faq.Id">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@faq.Id" aria-expanded="false" aria-controls="collapse-@faq.Id">
+                <div class="accordion-item faq-item">
+                    <h2 class="accordion-header faq-header" id="heading-@faq.Id">
+                        <button class="accordion-button faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@faq.Id" aria-expanded="false" aria-controls="collapse-@faq.Id">
                             @faq.Question
                         </button>
                     </h2>
-                    <div id="collapse-@faq.Id" class="accordion-collapse collapse" aria-labelledby="heading-@faq.Id" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
+                    <div id="collapse-@faq.Id" class="accordion-collapse collapse faq-collapse" aria-labelledby="heading-@faq.Id" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body faq-body">
                             @faq.Answer
                         </div>
                     </div>

@@ -19,16 +19,11 @@
                         <dt class="col-sm-4">Product Name</dt>
                         <dd class="col-sm-8">@Model.Name</dd>
 
-                        <dt class="col-sm-4">Short Description</dt>
-                        <dd class="col-sm-8">@Html.Raw(Model.ShortDescription)</dd>
-
-                        <dt class="col-sm-4">Long Description</dt>
+                        <dt class="col-sm-4">Description</dt>
                         <dd class="col-sm-8">@Html.Raw(Model.Description)</dd>
-
 
                         <dt class="col-sm-4">Product Buddle</dt>
                         <dd class="col-sm-8">@Model.ProductBuddle?.Name</dd>
-
                     </dl>
 
                     <form asp-action="Delete" asp-controller="Product" method="post">

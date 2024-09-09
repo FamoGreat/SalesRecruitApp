@@ -143,7 +143,14 @@ namespace SalesRecruitApp.Controllers
 
                     // Update the category's basic details
                     productBuddleFromDb.Name = productBuddle.Name;
+                    productBuddleFromDb.Title = productBuddle.Title;
+                    productBuddleFromDb.SubTitle = productBuddle.SubTitle;
+                    productBuddleFromDb.Highlights = productBuddle.Highlights;
+                    productBuddleFromDb.UsageInstructions = productBuddle.UsageInstructions;
                     productBuddleFromDb.Description = productBuddle.Description;
+                    productBuddleFromDb.Price = productBuddle.Price;
+                    productBuddleFromDb.StockQuantity = productBuddle.StockQuantity;
+
 
                     string wwwRootPath = _webHostEnvironment.WebRootPath;
 
