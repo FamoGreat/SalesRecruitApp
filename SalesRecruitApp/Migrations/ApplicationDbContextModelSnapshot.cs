@@ -22,6 +22,45 @@ namespace SalesRecruitApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("SalesRecruitApp.Models.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("SalesRecruitApp.Models.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductBuddleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductBuddleId");
+
+                    b.ToTable("CartItems");
+                });
+
             modelBuilder.Entity("SalesRecruitApp.Models.FAQ", b =>
                 {
                     b.Property<int>("Id")
@@ -154,6 +193,25 @@ namespace SalesRecruitApp.Migrations
                     b.ToTable("Testimonials");
                 });
 
+            modelBuilder.Entity("SalesRecruitApp.Models.CartItem", b =>
+                {
+                    b.HasOne("SalesRecruitApp.Models.Cart", "Cart")
+                        .WithMany("CartItems")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SalesRecruitApp.Models.ProductBuddle", "ProductBuddle")
+                        .WithMany()
+                        .HasForeignKey("ProductBuddleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("ProductBuddle");
+                });
+
             modelBuilder.Entity("SalesRecruitApp.Models.FAQ", b =>
                 {
                     b.HasOne("SalesRecruitApp.Models.ProductBuddle", "ProductBuddle")
@@ -185,6 +243,11 @@ namespace SalesRecruitApp.Migrations
                         .IsRequired();
 
                     b.Navigation("ProductBuddle");
+                });
+
+            modelBuilder.Entity("SalesRecruitApp.Models.Cart", b =>
+                {
+                    b.Navigation("CartItems");
                 });
 
             modelBuilder.Entity("SalesRecruitApp.Models.ProductBuddle", b =>

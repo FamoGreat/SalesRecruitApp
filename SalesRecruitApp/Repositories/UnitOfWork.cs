@@ -1,4 +1,5 @@
 ﻿using SalesRecruitApp.Data;
+using SalesRecruitApp.Models;
 using SalesRecruitApp.Repositories.IRepository;
 using SalesRecruitApp.Repositories.Repository;
 
@@ -14,7 +15,8 @@ namespace SalesRecruitApp.Repositories
             ProductBundles = new ProductBundleRepository(_dbContext);
             FAQs = new FAQRepository(_dbContext);
             Testimonials = new TestimonialRepository(_dbContext);
-
+            Carts = new CartRepository(_dbContext);
+            CartItems = new CartItemRepository(_dbContext);
 
         }
 
@@ -22,6 +24,8 @@ namespace SalesRecruitApp.Repositories
         public IProductBundleRepository ProductBundles { get; private set; }
         public IFAQRepository FAQs { get; private set; }
         public ITestimonialRepository Testimonials { get; private set; }
+        public ICartRepository Carts { get; private set; }
+        public ICartItemRepository CartItems { get; private set; }
 
         public async Task SaveAsync()
         {

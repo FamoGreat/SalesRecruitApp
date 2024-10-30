@@ -1,0 +1,92 @@
+﻿/* Rounded card effect */
+.cart-card,
+.summary-card {
+    border-radius: 15px; /* Round the corners */
+    overflow: hidden; /* Prevent content from overflowing the rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Strong shadow effect */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+    /* Shadow effect on hover */
+    .cart-card:hover,
+    .summary-card:hover {
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+        transform: translateY(-5px); /* Subtle lift on hover */
+    }
+
+/* Cart item image hover effect */
+.cart-item-img {
+    border-radius: 10px; /* Round the product images */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .cart-item-img:hover {
+        transform: scale(1.05); /* Zoom in on hover */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Shadow on image hover */
+    }
+
+/* Button hover effects */
+.cart-remove-btn,
+.checkout-btn,
+.cart-continue-btn {
+    border-radius: 30px; /* Round the buttons */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .cart-remove-btn:hover,
+    .checkout-btn:hover,
+    .cart-continue-btn:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Button shadow effect */
+    }
+
+    .cart-remove-btn:hover {
+        background-color: #c82333; /* Darker red on hover for remove button */
+    }
+
+    .checkout-btn:hover {
+        background-color: #218838; /* Darker green on hover for checkout */
+    }
+
+    .cart-continue-btn:hover {
+        background-color: #5a6268; /* Darker gray on hover for continue shopping */
+    }
+
+/* Adjust form-control for quantity input */
+.cart-item-quantity input {
+    box-shadow: none;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease;
+    border-radius: 8px; /* Rounded input fields */
+}
+
+    .cart-item-quantity input:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue shadow on focus */
+    }
+
+/* Rounded borders for the cart table */
+.cart-table {
+    border-radius: 15px; /* Rounded table corners */
+    overflow: hidden; /* Ensure the corners of the table are rounded */
+}
+
+/* Table row hover effect */
+.cart-item-row:hover {
+    background-color: #f8f9fa; /* Light background change on hover */
+}
+
+/* Add padding and rounding to the summary section */
+.summary-card {
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Rounded alert box for empty cart */
+.cart-empty-alert {
+    border-radius: 10px;
+}
+
+/* General container rounding for a smooth overall effect */
+.cart-container {
+    border-radius: 15px;
+}

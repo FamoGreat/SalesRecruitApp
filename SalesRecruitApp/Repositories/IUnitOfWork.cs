@@ -8,6 +8,10 @@ namespace SalesRecruitApp.Repositories
         IProductBundleRepository ProductBundles { get; }
         ITestimonialRepository Testimonials { get; }
         IFAQRepository FAQs { get; }
+        ICartRepository Carts { get; }
+        ICartItemRepository CartItems { get; }
+
+
         Task SaveAsync();
 
     }

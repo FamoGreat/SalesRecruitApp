@@ -30,6 +30,10 @@ namespace SalesRecruitApp.Controllers
             return View(viewModel);
         }
 
+        public IActionResult ProductBundle()
+        {
+            return View();
+        }
 
         public async Task<IActionResult> Details(int id)
         {
@@ -54,6 +58,7 @@ namespace SalesRecruitApp.Controllers
 
             return View(viewModel);
         }
+
 
         public IActionResult Privacy()
         {

@@ -70,7 +70,6 @@
         }
 
 
-
 /* Primary Button */
 .btn-primary {
     background-color: #3A6A37; /* Primary Forever Green */
@@ -97,6 +96,93 @@
     .btn-primary:active {
         background-color: #2D5331; /* Darker green on active state */
         border-color: #2D5331; /* Border color matches active background */
+        transform: scale(0.98); /* Slight shrink on click */
+    }
+
+/* Success Button */
+.btn-success {
+    background-color: #28a745; /* Bootstrap Success Green */
+    color: #fff; /* White text for contrast */
+    border: 2px solid #28a745; /* Add solid border with the same color */
+    border-radius: 50px; /* Fully round buttons */
+    padding: 10px 20px; /* Adjust padding for better look */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+    .btn-success:hover {
+        background-color: #5cc85c; /* Lighter green on hover */
+        border-color: #5cc85c; /* Change border color to match background */
+        transform: scale(1.05); /* Slight zoom-in effect on hover */
+    }
+
+    .btn-success:focus {
+        outline: none; /* Remove default focus outline */
+        box-shadow: 0 0 0 4px rgba(92, 200, 92, 0.5); /* Custom green outline on focus */
+    }
+
+    .btn-success:active {
+        background-color: #218838; /* Darker green on active state */
+        border-color: #218838; /* Border color matches active background */
+        transform: scale(0.98); /* Slight shrink on click */
+    }
+
+/* Danger Button */
+.btn-danger {
+    background-color: #dc3545; /* Bootstrap Danger Red */
+    color: #fff; /* White text for contrast */
+    border: 2px solid #dc3545; /* Add solid border with the same color */
+    border-radius: 50px; /* Fully round buttons */
+    padding: 10px 20px; /* Adjust padding for better look */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+    .btn-danger:hover {
+        background-color: #e55364; /* Lighter red on hover */
+        border-color: #e55364; /* Change border color to match background */
+        transform: scale(1.05); /* Slight zoom-in effect on hover */
+    }
+
+    .btn-danger:focus {
+        outline: none; /* Remove default focus outline */
+        box-shadow: 0 0 0 4px rgba(230, 80, 80, 0.5); /* Custom red outline on focus */
+    }
+
+    .btn-danger:active {
+        background-color: #c82333; /* Darker red on active state */
+        border-color: #c82333; /* Border color matches active background */
+        transform: scale(0.98); /* Slight shrink on click */
+    }
+
+/* Secondary Button */
+.btn-secondary {
+    background-color: #6c757d; /* Bootstrap Secondary Gray */
+    color: #fff; /* White text for contrast */
+    border: 2px solid #6c757d; /* Add solid border with the same color */
+    border-radius: 50px; /* Fully round buttons */
+    padding: 10px 20px; /* Adjust padding for better look */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+    .btn-secondary:hover {
+        background-color: #858f97; /* Lighter gray on hover */
+        border-color: #858f97; /* Change border color to match background */
+        transform: scale(1.05); /* Slight zoom-in effect on hover */
+    }
+
+    .btn-secondary:focus {
+        outline: none; /* Remove default focus outline */
+        box-shadow: 0 0 0 4px rgba(133, 143, 151, 0.5); /* Custom gray outline on focus */
+    }
+
+    .btn-secondary:active {
+        background-color: #5a6268; /* Darker gray on active state */
+        border-color: #5a6268; /* Border color matches active background */
         transform: scale(0.98); /* Slight shrink on click */
     }
 
@@ -562,3 +648,4 @@
     font-size: 16px; /* Consistent font size */
     line-height: 1.5; /* Improved readability */
 }
+
